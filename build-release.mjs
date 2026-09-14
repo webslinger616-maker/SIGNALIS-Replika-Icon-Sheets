@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+const repository=process.env.GITHUB_REPOSITORY??process.argv[2];
+const tag=process.env.GITHUB_REF_NAME??process.argv[3];
+if(!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repository??''))throw new Error('Pass OWNER/REPOSITORY as argument 1.');
+if(!/^v\d+\.\d+\.\d+(?:-[a-zA-Z0-9.-]+)?$/.test(tag??''))throw new Error('Pass a version tag such as v0.1.0 as argument 2.');
+const manifest=JSON.parse(fs.readFileSync('module.json','utf8'));
+manifest.version=tag.slice(1);
+manifest.url=`https://github.com/${repository}`;
+manifest.manifest=`https://github.com/${repository}/releases/latest/download/module.json`;
+manifest.download=`https://github.com/${repository}/releases/download/${tag}/signalis-coc7-sheets.zip`;
+const stage='dist/stage';fs.rmSync('dist',{recursive:true,force:true});fs.mkdirSync(stage,{recursive:true});
+for(const entry of ['scripts','styles','templates','assets'])fs.cpSync(entry,path.join(stage,entry),{recursive:true});
+// Build helper is not needed by Foundry.
+fs.rmSync(path.join(stage,'scripts/build-release.mjs'));
+for(const entry of ['README.md','LICENSE.md','CHANGELOG.md'])fs.copyFileSync(entry,path.join(stage,entry));
+fs.writeFileSync(path.join(stage,'module.json'),JSON.stringify(manifest,null,2)+'\n');
+fs.copyFileSync(path.join(stage,'module.json'),'dist/module.json');
+execFileSync('python3',['-c',"import shutil; shutil.make_archive('dist/signalis-coc7-sheets','zip','dist/stage')"],{stdio:'inherit'});
+console.log('Release assets: dist/module.json and dist/signalis-coc7-sheets.zip');

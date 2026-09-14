@@ -1,0 +1,11 @@
+{
+  "name": "signalis-coc7-sheets",
+  "version": "0.1.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check scripts/main.js && node --check scripts/adapter.js && node --check scripts/layouts.js",
+    "release": "node scripts/build-release.mjs"
+  }
+}

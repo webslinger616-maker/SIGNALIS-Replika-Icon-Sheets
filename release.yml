@@ -1,0 +1,22 @@
+name: Publish Foundry module
+on:
+  push:
+    tags:
+      - 'v*'
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run check
+      - run: npm test
+      - run: npm run release
+      - name: Publish release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/module.json dist/signalis-coc7-sheets.zip --verify-tag --title "SIGNALIS Sheets $GITHUB_REF_NAME" --notes-file CHANGELOG.md

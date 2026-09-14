@@ -1,0 +1,29 @@
+.srl-sheet { --srl-accent:#ff4a22; --srl-ink:#131313; }
+.srl-sheet .window-content {padding:0;background:#090e0f;overflow:hidden;}
+.srl-sheet .srl-root {height:100%;min-height:0;display:flex;flex-direction:column;color:#eee;}
+.srl-sheet .srl-icon {--srl-accent:#e9bc35;}
+.srl-sheet .srl-toolbar {display:flex;gap:4px;flex-wrap:wrap;padding:6px;background:#11191b;border-bottom:1px solid var(--srl-accent);flex:0 0 auto;}
+.srl-sheet .srl-toolbar button {flex:1;min-width:88px;font-size:12px;color:#eee;background:#202729;border:1px solid #6d7273;}
+.srl-sheet .srl-toolbar button.active {background:var(--srl-accent);color:#111;}
+.srl-sheet .srl-scroll {overflow:auto;min-height:0;flex:1;}
+.srl-sheet .srl-artboard {position:relative;width:100%;container-type:inline-size;line-height:0;}
+.srl-sheet .srl-background {display:block;width:100%;height:auto;border:0;}
+.srl-sheet .srl-field {position:absolute!important;margin:0!important;padding:1px 2px!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;border:0!important;border-radius:0!important;box-shadow:none;background:transparent!important;color:var(--srl-ink)!important;font-family:Arial,sans-serif;font-size:clamp(7px,1.42cqw,18px)!important;line-height:1.15!important;text-align:left;box-sizing:border-box;}
+.srl-sheet textarea.srl-field {resize:none;overflow:auto;white-space:pre-wrap;}
+.srl-sheet .srl-field:focus {outline:2px solid var(--srl-accent)!important;background:#fffef2!important;z-index:3;}
+.srl-sheet input.srl-checkbox {appearance:auto!important;accent-color:var(--srl-accent);background:#f0f0e8!important;cursor:pointer;}
+.srl-sheet .srl-field[readonly] {cursor:default;opacity:1;}
+.srl-sheet .srl-portrait {padding:0!important;overflow:hidden;cursor:pointer;}
+.srl-sheet .srl-portrait img {width:100%;height:100%;object-fit:contain;border:0;}
+.srl-sheet .srl-hotspot {position:absolute;margin:0;padding:0;background:transparent;border:0;box-shadow:none;border-radius:0;min-height:0;cursor:pointer;}
+.srl-sheet .srl-hotspot:hover,.srl-sheet .srl-hotspot:focus-visible {outline:2px solid var(--srl-accent);background:#ffffff12;}
+.srl-sheet .srl-help {font:12px/1.5 Arial,sans-serif;padding:10px 16px;margin:0;color:#c4ccce;}
+.srl-sheet .srl-manager {padding:14px;font:13px/1.45 Arial,sans-serif;background:#172022;}
+.srl-sheet .srl-manager details {padding:8px;border:1px solid #667477;margin-bottom:8px;}
+.srl-sheet .srl-manager summary {cursor:pointer;color:var(--srl-accent);}
+.srl-sheet .srl-link-row {display:flex;gap:8px;align-items:center;margin:5px 0;}
+.srl-sheet .srl-link-row label {width:180px;flex-shrink:0;}
+.srl-sheet .srl-link-row select {flex:1;min-width:0;background:#f5f3e9;color:#141414;}
+.srl-sheet .srl-link-row button {width:112px;flex-shrink:0;}
+.srl-sheet .srl-item-row {display:flex;gap:8px;margin:5px 0;}
+.srl-sheet .srl-manager button {background:#e5e6df;color:#151515;font-size:12px;}

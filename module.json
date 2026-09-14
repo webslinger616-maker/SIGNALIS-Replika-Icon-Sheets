@@ -1,0 +1,33 @@
+{
+  "id": "signalis-coc7-sheets",
+  "title": "SIGNALIS: Replika & Icon Sheets",
+  "description": "Four-page Replika and Imperial Icon investigator sheets for CoC7, with native actor statistics, skill bindings, rolls, inventory access, and campaign notes.",
+  "version": "0.1.1",
+  "authors": [
+    {
+      "name": "SIGNALIS Red Line Campaign"
+    }
+  ],
+  "compatibility": {
+    "minimum": "14",
+    "maximum": "14"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "CoC7",
+        "type": "system",
+        "compatibility": {
+          "minimum": "8.15"
+        }
+      }
+    ]
+  },
+  "esmodules": [
+    "scripts/main.js"
+  ],
+  "styles": [
+    "styles/sheets.css"
+  ],
+  "languages": []
+}

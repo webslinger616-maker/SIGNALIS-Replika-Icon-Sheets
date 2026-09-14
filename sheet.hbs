@@ -1,0 +1,34 @@
+<div class="srl-root srl-{{faction}}">
+ <nav class="srl-toolbar" aria-label="Sheet pages">
+  {{#each navigation}}<button type="button" data-srl-page="{{page}}" class="{{#if active}}active{{/if}}">{{label}}</button>{{/each}}
+  <button type="button" data-srl-command="manager">Skills &amp; items</button>
+  <button type="button" data-srl-command="native">Native CoC7 sheet</button>
+ </nav>
+ <div class="srl-scroll">
+ {{#if manager}}<section class="srl-manager">
+  <p>Link existing CoC7 skills to the printed rows. Use Create only for a missing skill. Create specialties in the native sheet, then link them here. Right-click a value on the artwork to roll.</p>
+  <details open><summary>Skill links</summary>
+  {{#each rows}}<div class="srl-link-row"><label>{{name}}</label><select data-srl-link="skill" data-row="{{name}}" {{#unless ../editable}}disabled{{/unless}}><option value="">Automatic match / unlinked</option>{{#each options}}<option value="{{id}}" {{#if selected}}selected{{/if}}>{{name}}</option>{{/each}}</select>{{#if canCreate}}<button type="button" data-srl-command="create-skill" data-row="{{name}}" {{#unless ../editable}}disabled{{/unless}}>Create missing</button>{{/if}}</div>{{/each}}
+  </details>
+  <details><summary>Weapon row links</summary>
+  <p>Row 1 is unarmed. Assign real weapon Items to rows 2–6; their fields then edit those Items.</p>
+  {{#each slots}}<label class="srl-link-row">Weapon row {{slot}}<select data-srl-link="weapon" data-row="{{slot}}" {{#unless ../editable}}disabled{{/unless}}><option value="">Unassigned</option>{{#each options}}<option value="{{id}}" {{#if selected}}selected{{/if}}>{{name}}</option>{{/each}}</select></label>{{/each}}
+  </details>
+  <details><summary>Native inventory, spells, and skills</summary>
+  {{#each items}}<div class="srl-item-row"><button type="button" data-srl-command="open-item" data-item="{{id}}">{{name}} ({{type}})</button>{{#if skill}}<button type="button" data-srl-command="roll-item" data-item="{{id}}" {{#unless ../editable}}disabled{{/unless}}>Roll</button>{{/if}}{{#if weapon}}<button type="button" data-srl-command="roll-item" data-item="{{id}}" {{#unless ../editable}}disabled{{/unless}}>Attack</button>{{/if}}</div>{{/each}}
+  </details>
+ </section>{{/if}}
+ <div class="srl-artboard">
+  <img class="srl-background" src="{{background}}" alt="{{faction}} character sheet" draggable="false">
+  {{#each fields}}
+   {{#if portrait}}<button type="button" class="srl-portrait srl-field" style="{{style}}" data-srl-command="portrait" title="Choose portrait" {{#unless ../editable}}disabled{{/unless}}><img src="{{../portrait}}" alt="Character portrait"></button>
+   {{else}}{{#if check}}<input type="checkbox" class="srl-field srl-checkbox" style="{{style}}" data-srl-field="{{name}}" aria-label="{{label}}" title="{{tooltip}}" {{#if checked}}checked{{/if}} {{#if disabled}}disabled{{/if}}>
+   {{else}}{{#if multi}}<textarea class="srl-field" style="{{style}}" data-srl-field="{{name}}" aria-label="{{label}}" title="{{tooltip}}" {{#if disabled}}readonly{{/if}}>{{value}}</textarea>
+   {{else}}<input type="text" class="srl-field" style="{{style}}" value="{{value}}" data-srl-field="{{name}}" aria-label="{{label}}" title="{{tooltip}}" {{#if disabled}}readonly{{/if}}>
+   {{/if}}{{/if}}{{/if}}
+  {{/each}}
+  {{#each tabs}}<button type="button" class="srl-hotspot" style="{{style}}" data-srl-page="{{page}}" aria-label="Go to {{label}}" title="Go to {{label}}"></button>{{/each}}
+ </div>
+ <p class="srl-help">Right-click characteristics, skill values, Luck, or Sanity to roll. Weapon checks use the native combat dialog. Edits save on leaving a field. Hard and Extreme values calculate automatically. Campaign notes and bioresonance entries are reference notes; use native Items for automated spells and inventory.</p>
+ </div>
+</div>
